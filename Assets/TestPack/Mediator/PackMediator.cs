@@ -32,7 +32,7 @@ public class PackMediator : Mediator
         switch (inofifier.msg)
         {
             case NotifierConstant.StrPackViewShow:
-                List<PackModel> packModelList = (List<PackModel>)inofifier.body;
+                List<PackData> packModelList = (List<PackData>)inofifier.body;
                 packCompent.ShowPack(packModelList);
                 break;
             default:

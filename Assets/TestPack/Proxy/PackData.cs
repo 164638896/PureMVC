@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PackModel : ModelBase
+public class PackData : DataBase
 {
     public int Count { get; set; }
     private int goodId;
-    public GoodsModel good;
+    public GoodsData good;
 
     public int GoodId
     {
@@ -17,7 +17,7 @@ public class PackModel : ModelBase
         set { this.goodId = value; this.Count = 1; }
     }
 
-    public PackModel(int id, int goodId, int count)
+    public PackData(int id, int goodId, int count)
         : base(id)
     {
         this.Count = 0;
@@ -25,13 +25,13 @@ public class PackModel : ModelBase
         this.Count = count;
     }
 
-    public PackModel(int id)
+    public PackData(int id)
         : base(id)
     {
 
     }
 
-    public PackModel()
+    public PackData()
     {
         Count = 0;
     }

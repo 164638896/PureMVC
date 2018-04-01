@@ -3,29 +3,34 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-public class PackProxy : BaseProxy<PackModel>
+public class PackProxy : BaseProxy
 {
-    private static PackProxy packProxy;
+    public new const string NAME = "PackProxy";
+    public List<PackData> modelList
+    {
+        get { return (List<PackData>)base.Data; }
+    }
 
-    public PackProxy() : base()
+    public PackProxy() : base(NAME, new List<PackData>())
     {
         // 测试数据，应该从服务器接收数据
         for (int i = 0; i < 15; i++)
         {
-            this.AddModelToList(new PackModel(i));
+            this.AddModelToList(new PackData(i));
         }
-    }
-    
-    internal static PackProxy GetIntance()
-    {
-        if (packProxy == null)
-        {
-            packProxy = new PackProxy();
-        }
-        return packProxy;
     }
 
-    public PackModel GetEmptyModel()
+    public void AddModelToList(PackData order)
+    {
+        modelList.Add(order);
+    }
+
+    public void RemoveOrder(PackData order)
+    {
+        modelList.Remove(order);
+    }
+
+    public PackData GetEmptyModel()
     {
         return this.modelList.FirstOrDefault(a => a.GoodId == 0);
     }
@@ -43,7 +48,7 @@ public class PackProxy : BaseProxy<PackModel>
         }
     }
 
-    internal bool TryGetGoodModel(int id, out PackModel model)
+    internal bool TryGetGoodModel(int id, out PackData model)
     {
         model = null;
         model = this.modelList.FirstOrDefault(a => a.GoodId == id);
@@ -56,4 +61,21 @@ public class PackProxy : BaseProxy<PackModel>
             return true;
         }
     }
+
+    public void Update(PackData model)
+    {
+        PackData tmpModel = this.GetModelById(model.ID);
+        tmpModel = model;
+    }
+
+    public PackData GetModelById(int id)
+    {
+        return modelList.FirstOrDefault(a => a.ID == id);
+    }
+
+    public List<PackData> GetModelList()
+    {
+        return this.modelList;
+    }
+
 }

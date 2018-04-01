@@ -14,9 +14,9 @@ public class PackItem : MonoBehaviour
         this.img = this.transform.Find("GoodImg").GetComponent<Image>();
     }
 
-    private PackModel model;
+    private PackData model;
 
-    public PackModel Model
+    public PackData Model
     {
         get { return model; }
         set

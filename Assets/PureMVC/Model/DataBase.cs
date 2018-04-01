@@ -1,15 +1,15 @@
 ﻿using System.Collections;
 
 // 数据
-public class ModelBase
+public class DataBase
 {
     public int ID { get; set; }
 
-    public ModelBase()
+    public DataBase()
     {
 
     }
-    public ModelBase(int id)
+    public DataBase(int id)
     {
         this.ID = id;
     }

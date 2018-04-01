@@ -14,7 +14,7 @@ public class PackCompent : MonoBehaviour
         Intance = this;
     }
 
-    public void ShowPack(List<PackModel> modelList)
+    public void ShowPack(List<PackData> modelList)
     {
         while (this.transform.childCount != 0)
         {

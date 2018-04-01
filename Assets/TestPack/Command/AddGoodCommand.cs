@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+
 // Command 主要辅助 取Proxy里的数据 到 view 上显示
 public class AddGoodCommand : ICommand
 {
-    PackProxy packProxy = PackProxy.GetIntance();
-    GoodsProxy goodProxy = GoodsProxy.GetIntance();
-
+    PackProxy packProxy = Facade.Instance.findProxy(PackProxy.NAME) as PackProxy;
+    GoodsProxy goodProxy = Facade.Instance.findProxy(GoodsProxy.NAME) as GoodsProxy;
+    
     public void Excute(INotifier inotifier)
     {
-        PackModel model = null;
+        PackData model = null;
 
         //1.判断物体是不是存在
         int id = 1;
@@ -37,7 +38,7 @@ public class AddGoodCommand : ICommand
             model.GoodId = id;
         }
 
-        AppFacade.Intance.ExcuteCommand(new INotifier(NotifierConstant.StrRenderToViewCommand));
+        Facade.Instance.ExcuteCommand(new INotifier(NotifierConstant.StrRenderToViewCommand));
     }
 }
 
